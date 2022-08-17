@@ -208,6 +208,10 @@ Use `npm run build`. A complete project will be created inside the root folder.
 - **Login to npm** (you need to be registered on npm as a user or an organization) using `npm login` in the **plugin folder**.
 - **Publish** the plugin with `npm publish --access public`.
 
+### Examples
+
+You can find examples of plugins for Leapp in the dedicated [section](https://docs.leapp.cloud/latest/plugins/plugins-development#plugin-examples) of our documentation.
+
 ### Final notes
 
 If you want a more detailed explanation of the plugin system please go to the [dedicated section](https://docs.leapp.cloud/latest/plugins/plugins-introduction) in  our documentation.
