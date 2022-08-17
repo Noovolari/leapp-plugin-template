@@ -2,7 +2,7 @@ import { Session } from "@noovolari/leapp-core/models/session";
 import { AwsCredentialsPlugin } from "@noovolari/leapp-core/plugin-sdk/aws-credentials-plugin";
 import { PluginLogLevel } from "@noovolari/leapp-core/plugin-sdk/plugin-log-level";
 
-export class WebConsolePlugin extends AwsCredentialsPlugin {
+export class ExamplePlugin extends AwsCredentialsPlugin {
   get actionName(): string {
     return "Add a friendly name for your plugin action, eg. My first Plugin";
   }

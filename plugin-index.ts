@@ -1,1 +1,1 @@
-export { WebConsolePlugin } from "./web-console-plugin";
+export { ExamplePlugin } from "./example-plugin";
