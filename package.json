@@ -1,12 +1,11 @@
 {
-  "name": "leapp-web-console-plugin",
-  "author": "Noovolari",
-  "version": "1.0.0",
-  "description": "open the AWS web console for the specified session",
+  "name": "Your plugin name here",
+  "author": "Your author here",
+  "version": "Your semver version here e.g. 1.0.0",
+  "description": "Your plugin description here",
   "keywords": [
     "leapp-plugin",
-    "web console",
-    "AWS"
+    "Add other tags here...",
   ],
   "leappPlugin": {
     "supportedOS": [
@@ -15,7 +14,10 @@
     "supportedSessions": [
       "awsIamRoleFederated",
       "awsIamRoleChained",
-      "awsSsoRole"
+      "awsSsoRole",
+      "awsIamUser",
+      "aws",
+      "azure"
     ]
   },
   "scripts": {
