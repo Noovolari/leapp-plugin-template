@@ -193,7 +193,7 @@ In this method you have access to **3 important variables**:
     | -------- | -------- | ----------- |
     | url      | string   | a valid HTTP URL to open in the default browser |
     
-Finally you can find the complete code reference for our example plugin [here](https://github.com/Noovolari/leapp-plugin-template/blob/main/web-console-plugin.ts).
+Finally you can find the complete code reference for our example plugin [here](https://github.com/Noovolari/leapp-plugin-template/blob/main/example-plugin.ts).
 
 ### Build and publish!
 
