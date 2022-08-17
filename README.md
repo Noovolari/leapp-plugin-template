@@ -32,11 +32,11 @@ The App is designed to **manage and secure Cloud Access in multi-account environ
 This README covers all the steps required to build a simple plugin for Leapp. 
 If you are in a rush, you can jump directly to the [build](https://github.com/Noovolari/leapp-plugin-template/blob/main/README.md#4-create-your-first-plugin) section!
 
-### 1 Copy the template
+### 1. Copy the template
 
 Just click the green button above ⬆️ or [use this quicklink](https://github.com/Noovolari/leapp-plugin-template/generate). This action **will fork the repository** and gives you a **ready-to-use** template project for creating a new plugin.
 
-### 2 Install the project locally
+### 2. Install the project locally
 
 Just **clone the forked repository** and use 
 
