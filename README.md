@@ -29,19 +29,20 @@ The App is designed to **manage and secure Cloud Access in multi-account environ
 
 # How to build a plugin For Leapp
 
-This README covers all the steps required to build a simple plugin for Leapp.
+This README covers all the steps required to build a simple plugin for Leapp. 
+If you are in a rush, you can jump directly to the [build](/#create-your-first-plugin!) section!
 
-### 1.a Copy the template
+### 1 Copy the template
 
-Just click the green button `Use this template`. This action **will fork the repository** and gives you a **ready-to-use** template project for creating a new plugin.
+Just click the green button above ⬆️ or [use this quicklink](https://github.com/Noovolari/leapp-plugin-template/generate). This action **will fork the repository** and gives you a **ready-to-use** template project for creating a new plugin.
 
-### 1.b Install the project locally
+### 2 Install the project locally
 
-Just **clone the forked repository** and use `npm install`. You are ready to go.
+Just **clone the forked repository** and use 
 
-### 2. IDE to use
+```npm install```
 
-The template project was made using JetBrain's **Webstorm** but it is also compatible with **Visual Studio Code**. In general you can use any Text Editor but we recommend these 2.
+You are ready to go.
 
 ### 3. Configuring your new Plugin
 
@@ -49,11 +50,12 @@ Inside the project folder you will find 3 configuration file:
 
 - **tsconfig.json**: leave as it is. The file is already configured for using **Typescript** instead of Javascript.
 - **webpack.config.js**: leave as it is. Contains a configuration for **generating your entire plugin with a simple npm command**.
+
 - **package.json**: **change** the metadata information according to your new plugin.
 
 **PACKAGE.JSON overview of metadata**:
 
-```
+```json
 {
   "name": "<YOUR-PLUGIN-NAME-IN-SNAKE-CASE>", // Must be unique on npm and can contain your organization name as well
   "author": "<YOU-OR-YOUR-ORGANIZATION>", // The author of this plugin
@@ -95,13 +97,16 @@ You are done with `plugin-index.ts`.
 
 Create a new **typescript class** and **extend** `AwsCredentialsPlugin`.
 
-`export class WebConsolePlugin extends AwsCredentialsPlugin { ... }`
+
+```javascript 
+export class WebConsolePlugin extends AwsCredentialsPlugin { ... }
+```
 
 > Note: `AwsCredentialsPlugin` is a **class from Leapp** that gives you **access to temporary credentials for a given session**.
 
 Add **3 imports** (usually the editor will do this step for you)
 
-```
+```javascript
 import { Session } from "@noovolari/leapp-core/models/session";
 import { AwsCredentialsPlugin } from "@noovolari/leapp-core/plugin-sdk/aws-credentials-plugin";
 import { PluginLogLevel } from "@noovolari/leapp-core/plugin-sdk/plugin-log-level";
@@ -109,7 +114,7 @@ import { PluginLogLevel } from "@noovolari/leapp-core/plugin-sdk/plugin-log-leve
 
 **Inside the class** you define **2 properties** and **1 method**, it's as simple as that! Let's see:
 
-```
+```javascript
 get actionName(): string {
   return "Open web console"; // Friendly Name of your plugin: will be used to show the action in the Leapp Menu and Leapp plugin List
 }
@@ -122,7 +127,7 @@ get actionIcon(): string {
 
 Now the main dish: the **action method**! Leapp will use this method to execute an action based on a session's temporary credentials set, in this case will use them to generate a link shortcut to open AWS web console for that specific session's role.
 
-```
+```javascript
 async applySessionAction(session: Session, credentials: any): Promise<void> { ... }
 ```
 
