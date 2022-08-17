@@ -46,12 +46,7 @@ You are ready to go.
 
 ### 3. Configuring your new Plugin
 
-Inside the project folder you will find 3 configuration file:
-
-- **tsconfig.json**: leave as it is. The file is already configured for using **Typescript** instead of Javascript.
-- **webpack.config.js**: leave as it is. Contains a configuration for **generating your entire plugin with a simple npm command**.
-
-- **package.json**: **change** the metadata information according to your new plugin.
+Inside the project folder you will find 3 configuration file *but you need to edit ony* **package.json**:
 
 **PACKAGE.JSON overview of metadata**:
 
