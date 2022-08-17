@@ -135,7 +135,7 @@ In this method you have access to **3 important variables**:
 
 - [session](https://github.com/Noovolari/leapp/blob/master/packages/core/src/models/session.ts) 
    Leapp session the user clicked on, or selected in the Leapp CLI.
-   ```
+   ```javascript
    export class Session {
     sessionId: string;
     status: SessionStatus;
@@ -161,7 +161,7 @@ In this method you have access to **3 important variables**:
    ```
 - [credentials](https://github.com/Noovolari/leapp/blob/master/packages/core/src/models/credentials-info.ts)
   Credentials set for the session.
-  ```
+  ```javascript
   export interface CredentialsInfo {
     sessionToken: {
       aws_access_key_id: string;
