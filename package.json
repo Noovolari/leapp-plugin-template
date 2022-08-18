@@ -5,7 +5,7 @@
   "description": "Your plugin description here",
   "keywords": [
     "leapp-plugin",
-    "Add other tags here...",
+    "Add other tags here..."
   ],
   "leappPlugin": {
     "supportedOS": [
