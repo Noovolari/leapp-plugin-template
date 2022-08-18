@@ -23,13 +23,13 @@
 
 <p align="center">⚡ Lightning Fast, Safe, Desktop App for Cloud credentials managing and generation</p>
 
-**Leapp** is a Cross-Platform Cloud access App, built on top of [Electron](https://github.com/electron/electron).
+[**Leapp**](https://github.com/noovolari/leapp) is a Cross-Platform Cloud access App, built on top of [Electron](https://github.com/electron/electron).
 
-The App is designed to **manage and secure Cloud Access in multi-account environments,** and it is available for MacOS, Windows, and Linux.
+[The App](https://github.com/noovolari/leapp) is designed to **manage and secure Cloud Access in multi-account environments,** and it is available for MacOS, Windows, and Linux.
 
 # How to build a plugin For Leapp
 
-This README covers all the steps required to build a simple plugin for Leapp. 
+This README covers all the steps required to build a simple plugin for [Leapp](https://github.com/noovolari/leapp). 
 If you are in a rush, you can jump directly to the [build](https://github.com/Noovolari/leapp-plugin-template/blob/main/README.md#4-create-your-first-plugin) section!
 
 ### 1. Copy the template
