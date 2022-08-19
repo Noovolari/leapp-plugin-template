@@ -1,6 +1,6 @@
 {
-  "name": "Your plugin name here",
-  "author": "Your author here",
+  "name": "test-cava-plugin",
+  "author": "andrea.cavagna",
   "version": "Your semver version here e.g. 1.0.0",
   "description": "Your plugin description here",
   "keywords": [

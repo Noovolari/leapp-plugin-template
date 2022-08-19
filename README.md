@@ -201,7 +201,7 @@ Finally you can find the complete code reference for our example plugin [here](h
 
 Use `npm run build`. A complete project will be created inside the root folder. 
 
-> Note: you can **test your plugin** before submission, by **copying** `plugin.js` and `package.json` in a **folder with the same name as your package.json name value** inside `~/.Leapp/plugins/`.
+> Note: you can **test your plugin** before submission, by **copying** the output folder of `npm run build` inside `~/.Leapp/plugins/`.
 
 #### Publish your plugin
 
