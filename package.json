@@ -26,7 +26,7 @@
   "files": [
     "plugin.js"
   ],
-  "license": "ISC",
+  "license": "MPL",
   "dependencies": {
     "@noovolari/leapp-core": "^0.1.117"
   },
