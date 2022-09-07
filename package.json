@@ -1,6 +1,6 @@
 {
   "name": "example-plugin",
-  "author": "Your Author name.surname",
+  "author": { "name": "Your Author name.surname", "email": "Your email" }
   "version": "Your semver version here e.g. 1.0.0",
   "description": "Your plugin description here",
   "keywords": [
@@ -24,7 +24,8 @@
     "build": "webpack --config webpack.config.js"
   },
   "files": [
-    "plugin.js"
+    "plugin.js", 
+    "icon.png"
   ],
   "license": "MPL",
   "dependencies": {
