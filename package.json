@@ -32,7 +32,7 @@
   ],
   "license": "MPL",
   "dependencies": {
-    "@noovolari/leapp-core": "0.1.121"
+    "@noovolari/leapp-core": "0.1.122"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^11.0.0",
