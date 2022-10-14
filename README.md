@@ -80,9 +80,12 @@ Inside the project folder you will find 3 configuration file *but you need to ed
 
 ### 4. Create your first plugin!
 
+> The base objects needed to create your plugin are implemented in the [here](https://github.com/Noovolari/leapp/tree/master/packages/core/src/plugin-sdk), in the [Leapp repository](https://github.com/Noovolari/leapp).
+
 #### plugin-index.ts
 
-Open `plugin-index.ts` and add a class for your plugin. **plugin-index.ts** is the **entry point** for your plugin.
+**plugin-index.ts** is the **entry point** for your plugin! Open `plugin-index.ts` and export a class for your plugin.
+The exported class is implemented in a different file. You can see a real example below.
 
 > E.g. `export { WebConsolePlugin } from "./web-console-plugin";`. We are declaring **WebConsolePlugin** as our plugin class.
 
@@ -90,8 +93,11 @@ You are done with `plugin-index.ts`.
 
 #### plugin-class.ts (web-console-plugin.ts in our example)
 
-Create a new **typescript class** and **extend** `AwsCredentialsPlugin`.
+Create a new **TypeScript class** and **extend** `AwsCredentialsPlugin`.
 
+> There will be different kinds of plugins. AwsCredentialsPlugin is the first plugin available, so we're going to focus on that. 
+> The AwsCredentialsPlugin abstract class is defined in the [plugin-sdk folder of the Leapp Core](https://github.com/Noovolari/leapp/tree/master/packages/core/src/plugin-sdk). 
+> You don't have to re-implement it from scratch, as the leapp-core npm package is a dependency of the provided plugin template.
 
 ```javascript 
 export class WebConsolePlugin extends AwsCredentialsPlugin { ... }
@@ -99,7 +105,7 @@ export class WebConsolePlugin extends AwsCredentialsPlugin { ... }
 
 > Note: `AwsCredentialsPlugin` is a **class from Leapp** that gives you **access to temporary credentials for a given session**.
 
-Add **3 imports** (usually the editor will do this step for you)
+Add the following **3 imports** (usually the editor will do this step for you):
 
 ```javascript
 import { Session } from "@noovolari/leapp-core/models/session";
@@ -107,7 +113,7 @@ import { AwsCredentialsPlugin } from "@noovolari/leapp-core/plugin-sdk/aws-crede
 import { PluginLogLevel } from "@noovolari/leapp-core/plugin-sdk/plugin-log-level";
 ```
 
-**Inside the class** you define **2 properties** and **1 method**, it's as simple as that! Let's see:
+**Inside the class** you define **2 properties** (actionName, actionIcon) and **1 method** (applySessionAction); it's as simple as that! Let's see:
 
 ```javascript
 get actionName(): string {
@@ -126,7 +132,11 @@ Now the main dish: the **action method**! Leapp will use this method to execute 
 async applySessionAction(session: Session, credentials: any): Promise<void> { ... }
 ```
 
-In this method you have access to **3 important variables**:
+As you can see, the applySessionAction method signature contains both a session and a credentials parameters.
+The credentials parameter is specific to the AwsCredentialsPlugin type; other plugin types could expect other parameters
+in addition to the session one, which contains Leapp Session metadata.
+
+In the applySessionAction method you have access to **3 important variables**:
 
 - [session](https://github.com/Noovolari/leapp/blob/master/packages/core/src/models/session.ts) 
    Leapp session the user clicked on, or selected in the Leapp CLI.
@@ -185,13 +195,71 @@ In this method you have access to **3 important variables**:
     | -------- | ------ | ------------ |
     | url      | string | a valid HTTP URL to fetch from |
 
-
   - **`openExternalUrl`**`(url: string): void`
     Open an external URL in the default browser
 
     | argument | type     | description |
     | -------- | -------- | ----------- |
     | url      | string   | a valid HTTP URL to open in the default browser |
+
+  - **`getProfileIdByName`**`(profileName: string): string`
+
+    Return the NamedProfile object with the given name.
+
+    | argument    | type    | description |
+    | ----------- | ------- | ----------- |
+    | profileName | string  | the name of the NamedProfile I want to retrieve |
+
+  - **`getIdpUrlIdByUrl`**`(url: string): string`
+
+    Return the ID of the IdpUrl object associated with the given URL.
+
+    | argument | type   | description |
+    | -------- | ------ | ----------- |
+    | url      | string | the URL associated with the IdpUrl I want to retrieve |
+
+  - **`openTerminal`**`(command: string, env?: any): string`
+
+    Execute the given command in the platform-specific terminal; optionally, it is possible to set an env key/value object containing the env variables to export in the terminal, before the command execution.
+
+    | argument | type   | description |
+    |--------| ------ | ----------- |
+    | command  | string | the command that I want to execute in the platform-specific terminal |
+    | env      | any    | optional key/value env variables object |
+
+  - **`createSession`**`(createSessionData: SessionData): Promise<string>`
+
+    Creates a new Leapp Session from the createSessionData parameter. The latter type is SessionData. In particular,
+    SessionData is an abstract class that contains Leapp Session metadata. You've to pass to createSession a concrete implementation of the SessionData abstract class: [AwsIamUserSessionData](https://github.com/Noovolari/leapp/blob/master/packages/core/src/plugin-sdk/interfaces/aws-iam-user-session-data.ts), [AwsIamRoleFederatedSessionData](https://github.com/Noovolari/leapp/blob/master/packages/core/src/plugin-sdk/interfaces/aws-iam-role-federated-session-data.ts), or [AwsIamRoleChainedSessionData](https://github.com/Noovolari/leapp/blob/master/packages/core/src/plugin-sdk/interfaces/aws-iam-role-chained-session-data.ts).
+
+    | argument           | type   | description |
+    | ------------------ | ------ | ----------- |
+    | createSessionData  | string | the metadata used to create the Leapp Session |
+
+  - **`cloneSession`**`(session: Session): Promise<string>`
+
+    This method allows you to clone the given Leapp Session. This operation is allowed for the following Leapp Session types:
+
+    - AwsIamUserSession
+    - AwsIamRoleFederatedSession
+    - AwsIamRoleChainedSession
+
+    | argument | type    | description |
+    | -------- | ------- | ----------- |
+    | session  | Session | the Leapp Session that I want to clone |
+
+  - **`updateSession`**`(updateSessionData: SessionData, session: Session): Promise<void>`
+
+    This method allows you to update the given session with the given updateSessionData. This operation is allowed for the following Leapp Session types:
+
+    - AwsIamUserSession
+    - AwsIamRoleFederatedSession
+    - AwsIamRoleChainedSession
+
+    | argument          | type        | description |
+    | ----------------- | ----------- | ----------- |
+    | updateSessionData | SessionData | the metadata used to update the given Leapp Session |
+    | session           | Session     | the Leapp Session that I want to clone |
     
 Finally you can find the complete code reference for our example plugin [here](https://github.com/Noovolari/leapp-plugin-template/blob/main/example-plugin.ts).
 
