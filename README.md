@@ -237,7 +237,7 @@ In the applySessionAction method you have access to **3 important variables**:
 
     Create a new Leapp Session from the createSessionData parameter. The type of its argument is SessionData. In particular, SessionData is an abstract class that contains Leapp Session metadata. 
   
-    You have to pass a concrete implementation of the SessionData abstract clas to createSession. Available concrete implementations are: AwsIamUserSessionData, AwsIamRoleFederatedSessionData, or AwsIamRoleChainedSessionData.
+    You have to pass a concrete implementation of the SessionData abstract clas to createSession. Available concrete implementations are: [AwsIamUserSessionData](https://github.com/Noovolari/leapp/blob/master/packages/core/src/plugin-sdk/interfaces/aws-iam-user-session-data.ts), [AwsIamRoleFederatedSessionData](https://github.com/Noovolari/leapp/blob/master/packages/core/src/plugin-sdk/interfaces/aws-iam-role-federated-session-data.ts), or [AwsIamRoleChainedSessionData](https://github.com/Noovolari/leapp/blob/master/packages/core/src/plugin-sdk/interfaces/aws-iam-role-chained-session-data.ts).
 
     | argument           | type   | description |
     | ------------------ | ------ | ----------- |
