@@ -204,7 +204,9 @@ In the applySessionAction method you have access to **3 important variables**:
 
   - **`getProfileIdByName`**`(profileName: string): string`
 
-    Return the NamedProfile object with the given name.
+    Return the ID of a NamedProfile from the given name if it exists, otherwise creates a new named profile and returns its ID.
+
+    Can be used when creating/editing a session since SessionData requires the ID of a named profile.
 
     | argument    | type    | description |
     | ----------- | ------- | ----------- |
@@ -212,7 +214,9 @@ In the applySessionAction method you have access to **3 important variables**:
 
   - **`getIdpUrlIdByUrl`**`(url: string): string`
 
-    Return the ID of the IdpUrl object associated with the given URL.
+    Return the ID of the IdpUrl object from the given URL if it exists, otherwise creates a new IdP URL and returns its ID.
+
+    Can be used when creating/editing Federated Sessions since SessionData requires the ID of an IdP URL.
 
     | argument | type   | description |
     | -------- | ------ | ----------- |
@@ -222,6 +226,8 @@ In the applySessionAction method you have access to **3 important variables**:
 
     Execute the given command in the platform-specific terminal; optionally, it is possible to set an env key/value object containing the env variables to export in the terminal, before the command execution.
 
+    The terminal window base path is set to the home directory.
+  
     | argument | type   | description |
     |--------| ------ | ----------- |
     | command  | string | the command that I want to execute in the platform-specific terminal |
@@ -229,8 +235,9 @@ In the applySessionAction method you have access to **3 important variables**:
 
   - **`createSession`**`(createSessionData: SessionData): Promise<string>`
 
-    Creates a new Leapp Session from the createSessionData parameter. The latter type is SessionData. In particular,
-    SessionData is an abstract class that contains Leapp Session metadata. You've to pass to createSession a concrete implementation of the SessionData abstract class: [AwsIamUserSessionData](https://github.com/Noovolari/leapp/blob/master/packages/core/src/plugin-sdk/interfaces/aws-iam-user-session-data.ts), [AwsIamRoleFederatedSessionData](https://github.com/Noovolari/leapp/blob/master/packages/core/src/plugin-sdk/interfaces/aws-iam-role-federated-session-data.ts), or [AwsIamRoleChainedSessionData](https://github.com/Noovolari/leapp/blob/master/packages/core/src/plugin-sdk/interfaces/aws-iam-role-chained-session-data.ts).
+    Create a new Leapp Session from the createSessionData parameter. The type of its argument is SessionData. In particular, SessionData is an abstract class that contains Leapp Session metadata. 
+  
+    You have to pass a concrete implementation of the SessionData abstract clas to createSession. Available concrete implementations are: AwsIamUserSessionData, AwsIamRoleFederatedSessionData, or AwsIamRoleChainedSessionData.
 
     | argument           | type   | description |
     | ------------------ | ------ | ----------- |
@@ -259,7 +266,7 @@ In the applySessionAction method you have access to **3 important variables**:
     | argument          | type        | description |
     | ----------------- | ----------- | ----------- |
     | updateSessionData | SessionData | the metadata used to update the given Leapp Session |
-    | session           | Session     | the Leapp Session that I want to clone |
+    | session           | Session     | the Leapp Session that I want to update |
     
 Finally you can find the complete code reference for our example plugin [here](https://github.com/Noovolari/leapp-plugin-template/blob/main/example-plugin.ts).
 
